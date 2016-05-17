@@ -1,0 +1,75 @@
+$("#address").suggestions({
+    serviceUrl: "https://dadata.ru/api/v2",
+    token: "25ede8938c98d6259d89995c8b1513b4da29b9de",
+    type: "ADDRESS",
+    count: 6,
+    /* Вызывается, когда пользователь выбирает одну из подсказок */
+    onSelect: showSelected
+});
+
+function join(arr /*, separator */) {
+    var separator = arguments.length > 1 ? arguments[1] : ", ";
+    return arr.filter(function(n){return n}).join(separator);
+}
+
+function showSelected(suggestion) {
+    var address = suggestion.data;
+    $(['region', 'city', 'street', 'house']).each(function(index, value){
+        if(value == 'house') {
+            $('input[name="' + value + '"]').val(join([
+                join([address.house_type, address.house], " "),
+                join([address.block_type, address.block], " ")
+            ]));
+        } else {
+            $('input[name="' + value + '"]').val(address[value]);
+        }
+    });
+}
+
+
+
+$(":input").inputmask();
+$('input[name="site"]').inputmask('url_http');
+
+$('#schedule input').inputmask('hh:mm').attr('placeholder','hh:mm');
+
+$('#add_email').bind({
+    click : function() {
+        var email = $('input[name="email[]"]').filter(':first').clone();
+        var email_options = $('select[name="email_options[]"]').filter(':first').clone();
+        $('#email_list').append(
+                $('<br><br>')
+        ).append(
+                $('<div>').attr('class','col-sm-5').append(
+                        $(email).val('')
+                )
+        ).append(
+                $('<div>').attr('class','col-sm-4').append(
+                        $(email_options)
+                )
+        ).append(
+                $(this)
+        )
+    }
+});
+
+$('#add_tel').bind({
+    click : function() {
+        var tel = $('input[name="tel[]"]').filter(':first').clone();
+        console.log(tel);
+        var tel_options = $('select[name="tel_options[]"]').filter(':first').clone();
+        $('#tel_lsit').append(
+                $('<br><br>')
+        ).append(
+                $('<div>').attr('class','col-sm-5').append(
+                    $(tel).val('').inputmask('url_http')
+                )
+        ).append(
+                $('<div>').attr('class','col-sm-4').append(
+                        $(tel_options)
+                )
+        ).append(
+                $(this)
+        )
+    }
+});

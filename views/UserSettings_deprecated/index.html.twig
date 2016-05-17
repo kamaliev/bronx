@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="col-sm-10 col-md-8-border">
+        <h3>{{ title }}</h3>
+        <hr>
+        {{ content | raw }}
+    </div>
+    <div class="col-sm-2 col-registration-selection">
+        <dl>
+            <dt>
+                <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>Выбор пунктов
+            </dt>
+            <dd>
+                {% for item in rightMenu %}
+                    <a href="{{ item.link }}">{{ item.title }}</a><br>
+                {% endfor %}
+            </dd>
+        </dl>
+    </div>
+</div>

@@ -1,0 +1,418 @@
+<div class="panel-body">
+    <form class="form-horizontal" method="post">
+        <div class="form-group">
+            <label class="control-label col-sm-3">Название компании:</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control input-sm" placeholder="Введите называние вашей компании">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3">Адрес компании:</label>
+            <div class="col-sm-8">
+                <input id="address" type="text" class="form-control input-sm" placeholder="Введите адрес компании">
+                <input name="region" type="hidden">
+                <input name="city" type="hidden">
+                <input name="street" type="hidden">
+                <input name="house" type="hidden">
+                <small class="text-muted">Можно вводить произвольно пример <u>"Казань, Файзи 14"</u></small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3">Телефоны:</label>
+            <div class="col-sm-8 row" id="tel_lsit">
+                <div class="col-sm-5">
+                    <input type="text" name="tel[]" class="form-control input-sm" data-inputmask="'mask': '+7 (9{1,8}) 999 99 99'">
+                </div>
+                <div class="col-sm-4">
+                    <select class="form-control input-sm" name="tel_options[]">
+                        <option>Факс</option>
+                        <option>Херакс</option>
+                    </select>
+                </div>
+                <button type="button" class="btn btn-link col-sm-3" id="add_tel">Добавить</button>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3">Сайт:</label>
+            <div class="col-sm-8">
+                <input class="form-control input-sm" type="text" name="site">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3">E-mail:</label>
+            <div class="col-sm-8 row" id="email_list">
+                <div class="col-sm-5">
+                    <input type="text" name="email[]" class="form-control input-sm">
+                </div>
+                <div class="col-sm-4">
+                    <select class="form-control input-sm" name="email_options[]">
+                        <option>Факс</option>
+                        <option>Херакс</option>
+                    </select>
+                </div>
+                <button type="button" class="btn btn-link col-sm-3" id="add_email">Добавить</button>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3">График:</label>
+            <div class="col-sm-8">
+                <table class="table table-striped small" id="schedule">
+                    <thead>
+                        <tr>
+                            <th>День</th>
+                            <th class="text-center">Время работы</th>
+                            <th class="text-center">Перерыв</th>
+                            <th class="text-center">Выходной</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Понедельник</td>
+                            <td class="text-center">от<input type="text"  class="input-sm">до<input type="text"  class="input-sm"></td>
+                            <td class="text-center">от<input type="text" class="input-sm">до<input type="text"  class="input-sm"></td>
+                            <td class="text-center"><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>Вторник</td>
+                            <td class="text-center">от<input type="text"  class="input-sm">до<input type="text"  class="input-sm"></td>
+                            <td class="text-center">от<input type="text" class="input-sm">до<input type="text"  class="input-sm"></td>
+                            <td class="text-center"><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>Среда</td>
+                            <td class="text-center">от<input type="text"  class="input-sm">до<input type="text"  class="input-sm"></td>
+                            <td class="text-center">от<input type="text" class="input-sm">до<input type="text"  class="input-sm"></td>
+                            <td class="text-center"><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>Четверг</td>
+                            <td class="text-center">от<input type="text"  class="input-sm">до<input type="text"  class="input-sm"></td>
+                            <td class="text-center">от<input type="text" class="input-sm">до<input type="text"  class="input-sm"></td>
+                            <td class="text-center"><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>Пятница</td>
+                            <td class="text-center">от<input type="text"  class="input-sm">до<input type="text"  class="input-sm"></td>
+                            <td class="text-center">от<input type="text" class="input-sm">до<input type="text"  class="input-sm"></td>
+                            <td class="text-center"><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>Суббота</td>
+                            <td class="text-center">от<input type="text"  class="input-sm">до<input type="text"  class="input-sm"></td>
+                            <td class="text-center">от<input type="text" class="input-sm">до<input type="text"  class="input-sm"></td>
+                            <td class="text-center"><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>Воскресенье</td>
+                            <td class="text-center">от<input type="text"  class="input-sm">до<input type="text"  class="input-sm"></td>
+                            <td class="text-center">от<input type="text" class="input-sm">до<input type="text"  class="input-sm"></td>
+                            <td class="text-center"><input type="checkbox"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3">Виды работ:</label>
+            <div class="col-sm-8 row">
+                <label class="control-label panel-body-auto">Техническое обслуживание и ремонт</label>
+                <div class="row" data-toggle="buttons">
+                    <div class="col-sm-6 btn-group btn-group-linkactive">
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Плановое техническое обслуживание
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Диагностика и ремонт ходовой части
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Диагностика тормозной системы
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Диагностика и ремонт электрооборудования
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Компьютерная диагностика электронных<br>систем автомобиля
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Диагностика бензиновых двигателей
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Диагностика дизельных двигателей
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Диагностика АКПП
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Ремонт АКПП
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Ремонт МКПП
+                        </label>
+                    </div>
+                    <div class="col-sm-6 btn-group btn-group-linkactive">
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Ремонт бензиновых двигателей
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Ремонт дизельных двигателей
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Ремонт и регулировка ТНВД
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Ремонт рулевых реек
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Ремонт турбин
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Ремонт стартеров и генераторов
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Развал — схождение
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Ремонт электромоторов
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Замена катализаторов, ремонт выхлопной системы
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Заправка и ремонт систем кондиционирования
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Шиномонтаж, балансировка
+                        </label>
+                    </div>
+                </div>
+                <hr>
+                <label class="control-label panel-body-auto">Кузовной ремонт и окраска</label>
+                <div class="row" data-toggle="buttons">
+                    <div class="col-sm-6 btn-group btn-group-linkactive">
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Восстановление геометрии кузова
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Кузовной ремонт
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Локальный кузовной ремонт: вмятины, сколы
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Удаление вмятин без покраски
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Ремонт бамперов
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Ремонт пластиковых деталей кузова
+                        </label>
+                    </div>
+                    <div class="col-sm-6 btn-group btn-group-linkactive">
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Сварка аргоном
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Компьютерный подбор краски
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Локальный окрас
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Окрас переходом
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Окрас кузова
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Установка стекол
+                        </label>
+                    </div>
+                </div>
+                <hr>
+                <label class="control-label panel-body-auto">Автозапчасти в наличии </label>
+                <div class="row" data-toggle="buttons">
+                    <div class="col-sm-6 btn-group btn-group-linkactive">
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Технологическая мойка
+                        </label>
+                    </div>
+                </div>
+                <hr>
+                <label class="control-label panel-body-auto">Другие услуги</label>
+                <div class="row" data-toggle="buttons">
+                    <div class="col-sm-6 btn-group btn-group-linkactive">
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Технологическая мойка
+                        </label>
+                        <label class="btn btn-link">
+                                <input type="checkbox" autocomplete="off">Антикоррозийная обработка кузова
+                        </label>
+                        <label class="btn btn-link">
+                                <input type="checkbox" autocomplete="off">Восстановительная полировка автомобиля
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Полировка фар и фонарей
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Защитное покрытие кузова
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Ремонт сколов лобового стекла
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Тонировка и бронирование стекол, фар
+                        </label>
+                    </div>
+                    <div class="col-sm-6 btn-group btn-group-linkactive">
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Наличие представителя страховой компании
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Проведение независимой автоэкспертизы
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Свой эвакуатор
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Выездной ремонт, автомобиль техпомощи
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Подменный автомобиль
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">ГТО (Технический осмотр)
+                        </label>
+                    </div>
+                </div>
+                <hr>
+                <label class="control-label panel-body-auto">Дополнительное оборудование</label>
+                <div class="row" data-toggle="buttons">
+                    <div class="col-sm-6 btn-group btn-group-linkactive">
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Установка навигационного оборудования
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Установка ксенона
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Установка парктроников
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Установка защиты картера
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Установка и ремонт газобаллонного<br>оборудования
+                        </label>
+                    </div>
+                    <div class="col-sm-6 btn-group btn-group-linkactive">
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Установка фаркопа
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Установка люка
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Установка предпусковых подогревателей двигателя
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Установка автономных отопителей
+                        </label>
+                    </div>
+                </div>
+                <hr>
+                <label class="control-label panel-body-auto">Автозвук</label>
+                <div class="row" data-toggle="buttons">
+                    <div class="col-sm-6 btn-group btn-group-linkactive">
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Установка аудиооборудования
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Установка видеооборудования
+                        </label>
+                    </div>
+                    <div class="col-sm-6 btn-group btn-group-linkactive">
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Шумоизоляция
+                        </label>
+                    </div>
+                </div>
+                <hr>
+                <label class="control-label panel-body-auto">Охранные системы</label>
+                <div class="row" data-toggle="buttons">
+                    <div class="col-sm-6 btn-group btn-group-linkactive">
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Установка противоугонного оборудования
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Установка cпутниковых охранных систем
+                        </label>
+                    </div>
+                    <div class="col-sm-6 btn-group btn-group-linkactive">
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Установка турботаймера
+                        </label>
+                    </div>
+                </div>
+                <hr>
+                <label class="control-label panel-body-auto">Тюнинг</label>
+                <div class="row" data-toggle="buttons">
+                    <div class="col-sm-6 btn-group btn-group-linkactive">
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Аэрография
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Нанесение винилового покрытия
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Перетяжка салона
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Светодиодная подсветка
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Чип-тюнинг
+                        </label>
+                    </div>
+                    <div class="col-sm-6 btn-group btn-group-linkactive">
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Тюнинг выхлопной системы
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Внешний тюнинг
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Аквапринт
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Разработка индивидуального дизайна салона
+                        </label>
+                    </div>
+                </div>
+                <hr>
+                <label class="control-label panel-body-auto">Ремонт салона</label>
+                <div class="row" data-toggle="buttons">
+                    <div class="col-sm-6 btn-group btn-group-linkactive">
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Устранение потертостей, прожогов и порезов
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Восстановление швов и подтяжка изношеных<br>сидений
+                        </label>
+                    </div>
+                    <div class="col-sm-6 btn-group btn-group-linkactive">
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Ремонт любых обшивок, торпед, консолей, рулей
+                        </label>
+                        <label class="btn btn-link">
+                            <input type="checkbox" autocomplete="off">Покраска кожи, винила, пластика, велюра, ковров
+                        </label>
+                    </div>
+                </div>
+                <br>
+            </div>
+            <label class="col-md-3"></label>
+            <button type="submit" class="btn col-md-9">Добавить</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,35 @@
+{% extends "index.html.twig" %}
+
+{% block title %}Войти{% endblock %}
+{% block content %}
+<div class="ui two column centered grid" id="login-form">
+    <div class="column ">
+        <div class="ui segment">
+            <h1>Войти в 2CTO.RU</h1>
+            {#<p><strong>Войти через:</strong></p>#}
+            {#<button class="ui facebook button">#}
+                {#<i class="facebook icon"></i>#}
+                {#Facebook#}
+            {#</button>#}
+            {#<button class="ui google plus button">#}
+                {#<i class="google plus icon"></i>#}
+                {#Google Plus#}
+            {#</button>#}
+            {#<button class="ui vk button">#}
+                {#<i class="vk icon"></i>#}
+                {#Вконтакте#}
+            {#</button>#}
+            {#<div class="ui horizontal divider">#}
+                {#или#}
+            {#</div>#}
+            {{ form | raw }}
+            <div class="ui horizontal divider">
+                или
+            </div>
+            <div class="ui grid centered aligned">
+                <p><a href="/registration">Регистрация нового пользователя</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

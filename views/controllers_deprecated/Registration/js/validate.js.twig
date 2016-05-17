@@ -1,0 +1,68 @@
+$.formUtils.addValidator({
+    name: 'radio_group',
+    validatorFunction : function(value, $el, config, language, $form) {
+        return $('input[name="' + $el.attr('name') + '"]:checked').length;
+    },
+    errorMessage : 'Выберите Ваш пол',
+    errorMessageKey: 'badEvenNumber'
+});
+
+$.formUtils.addValidator({
+    name: 'selected_group',
+    validatorFunction : function(value, $el, config, language, $form) {
+        return value;
+    }
+});
+
+$.validate({
+    modules : 'security',
+    addValidClassOnAll : true,
+    lang : 'registration',
+    validateOnBlur : true, // disable validation when input looses focus
+    onElementValidate : function(valid, $el, $form, errorMess) {
+        if($el.attr('name') == 'email' || $el.attr('name') == 'login') {
+            if (valid) {
+                $el.removeClass('has-error has-feedback').addClass('has-success has-feedback').parent().append(
+                        $('<span>').addClass('glyphicon glyphicon-ok form-control-feedback').attr('aria-hidden', 'true').css('margin-right','15px')
+                );
+            } else {
+                $el.removeClass('has-success has-feedback');
+                $el.parent().find('span').remove();
+            }
+        }
+    },
+    onSuccess : function($form) {
+
+        $.blockUI({
+            message : 'Пожалуйста подождите',
+            css: {
+                border: 'none',
+                padding: '15px',
+                backgroundColor: '#000',
+                '-webkit-border-radius': '10px',
+                '-moz-border-radius': '10px',
+                opacity: .5,
+                color: '#fff'}
+        });
+
+        $form.append(
+                $('<input>').attr('type','hidden').attr('name','ajax').val(true)
+        );
+
+        $form.fadeOut(function(){
+            $.ajax({
+                type : 'POST',
+                url : $form.attr('action'),
+                data : $form.serialize(),
+                dataType : 'html',
+                success : function(data) {
+                    $form.parent().append(data);
+                    $form.find('.panel').hide().fadeIn();
+                    $.unblockUI();
+                }
+            });
+        });
+        return false;
+    }
+});
+

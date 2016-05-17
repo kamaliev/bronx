@@ -1,0 +1,105 @@
+@border-radius: 0;
+
+body, html {
+  font-size: 12px;
+}
+
+.ui.container {
+  width: 1060px;
+}
+
+.ui.button {
+  border-radius: @border-radius;
+  box-shadow: none;
+}
+
+.ui.segment {
+  border-radius: @border-radius;
+}
+
+#login-form {
+  .ui.segment {
+    margin: 10px 40px;
+    padding: 35px 34px;
+  }
+  .ui.horizontal.divider {
+    padding: 20px 0;
+    margin: 0;
+  }
+  .submit.right.aligned {
+    text-align: right;
+  }
+}
+
+.relative-block {
+  position: relative;
+}
+
+.ui.inverted.vertical.footer.segment {
+  //background-color: #3F5A69;
+  margin-top: 50px;
+}
+
+.style-header {
+  background-color: #1b1c1d;
+  //background-color: #3F5A69;
+  padding: 5px 0;
+  border: 0;
+  .ui.icon.input {
+    width: 100%;
+    height: 25px;
+    border: 0;
+    input {
+      border-radius: @border-radius;
+      border: 0;
+    }
+  }
+  .ui.buttons {
+    .ui.button {
+      height: 25px;
+      margin-right: 5px;
+      padding: 5px 10px;
+      border-radius: @border-radius;
+      &:last-child {
+        margin: 0;
+      }
+    }
+  }
+}
+
+.ui.grid {
+  padding: 0;
+  margin: 0;
+  .wide.column {
+    padding: 0;
+    margin: 0;
+  }
+}
+
+#container-menu {
+  padding: 20px 0;
+  img.logo {
+    width: 100px;
+    padding: 3px 0;
+    display: block;
+  }
+  .ui.text.menu {
+    padding: 0;
+    margin: 0;
+  }
+  .ui.buttons {
+    .ui.button {
+      padding: 5px 10px;
+      margin-right: 5px;
+      border-radius: @border-radius;
+      font-weight: normal;
+      &:last-child {
+        margin: 0;
+      }
+    }
+  }
+}
+
+#main {
+  margin-top: 20px;
+}

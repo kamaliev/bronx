@@ -1,0 +1,136 @@
+<form class="form-horizontal" method="post">
+    <div class="form-group">
+        <label class="control-label col-sm-3">*Имя:</label>
+        <div class="row col-sm-7 col-padding-right-remove">
+            <div class="col-sm-6 col-padding-right-remove">
+                <input type="text"
+                       name="name"
+                       data-validation="length" data-validation-length="min1"
+                       placeholder="Имя"
+                       data-validation-error-msg="Введите Ваше имя"
+                       class="form-control input-sm">
+            </div>
+            <div class="col-sm-6 col-padding-right-remove">
+                <input type="text"
+                       name="surname"
+                       data-validation="length" data-validation-length="min1"
+                       data-validation-error-msg="Введите Вашу фамилию"
+                       placeholder="Фамилия"
+                       class="form-control input-sm">
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-3">*Логин:</label>
+        <div class="col-sm-7">
+            <input type="text"
+                   name="login"
+                   placeholder="Логин"
+                   class="form-control input-sm"
+                   data-validation-error-msg="Введите логин"
+                   data-validation-url="/registration/validate/login/"
+                   data-validation="server">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-3">*Дата рождения:</label>
+        <div class="row col-sm-7 col-padding-right-remove">
+            <div class="col-sm-6 col-padding-right-remove">
+                <select class="form-control input-sm" name="year"
+                        data-validation="selected_group"
+                        data-validation-error-msg="Выберите год">
+                    <option disabled selected>Год</option>
+                    {% for year in years %}
+                        <option value="{{ year }}">{{ year }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-sm-4 col-padding-right-remove">
+                <select class="form-control input-sm" name="month"
+                        data-validation="selected_group"
+                        data-validation-error-msg="Выберите месяц">
+                    <option disabled selected>Месяц</option>
+                    {% for index, month in months %}
+                        <option value="{{ index }}">{{ month }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-sm-2 col-padding-right-remove">
+                <input type="text"
+                       name="day"
+                       placeholder="Дата"
+                       class="form-control input-sm"
+                       data-validation="number"
+                       data-validation-allowing="range[1;31]">
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-3">*Пол:</label>
+        <div class="row col-sm-7 col-padding-right-remove">
+            <div class="col-sm-3 col-padding-right-remove radio col-padding-right-remove">
+                <label>
+                    <input type="radio"
+                           name="gender"
+                           value="male"
+                           data-validation="radio_group"
+                           data-validation-error-msg-container="#gender-error-dialog">
+                    Мужской
+                </label>
+            </div>
+            <div class="col-sm-3 col-padding-right-remove radio">
+                <label>
+                    <input type="radio"
+                           name="gender"
+                           value="female"
+                           data-validation="radio_group"
+                           data-validation-error-msg-container="#gender-error-dialog">
+                    Женский
+                </label>
+            </div>
+            <div class="col-sm-7">
+                <div id="gender-error-dialog" class="help-block"></div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="form-group">
+        <label class="col-sm-3 control-label text-left">*Email адрес:</label>
+        <div class="col-sm-7">
+            <input class="form-control input-sm"
+                   placeholder="Введите вашу почту"
+                   name="email"
+                   type="email"
+                   data-validation-url="/registration/validate/email/"
+                   data-validation="server">
+        </div>
+
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-3">*Пароль:</label>
+        <div class="row col-sm-7 col-padding-right-remove">
+            <div class="col-sm-6 col-padding-right-remove">
+                <input placeholder="Введите правильный пароль"
+                       name="pass_confirmation"
+                       type="password"
+                       class="form-control input-sm"
+                       data-validation="custom"
+                       data-validation-regexp="{{ password_regexp }}">
+            </div>
+            <div class="col-sm-6 col-padding-right-remove">
+                <input placeholder="Введите пароль еще раз"
+                       name="pass"
+                       type="password"
+                       class="form-control input-sm"
+                       data-validation="confirmation">
+            </div>
+            <div class="col-sm-12 panel-body small">
+                Пароль должен содержать от 8 до 16 символов, включая как минимум одну строчную букву, одну
+                заглавную букву и одну цифру.
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-primary btn-sm col-sm-4 col-sm-offset-4" type="submit">Регистрация</button>
+    </div>
+</form>

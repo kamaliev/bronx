@@ -1,0 +1,54 @@
+$.validate({
+    modules : 'security',
+    addValidClassOnAll : true,
+    lang : 'registration',
+    validateOnBlur : true, // disable validation when input looses focus
+    onSuccess : function($form) {
+
+        $.blockUI({
+            message : 'Пожалуйста подождите',
+            css: {
+                border: 'none',
+                padding: '15px',
+                backgroundColor: '#000',
+                '-webkit-border-radius': '10px',
+                '-moz-border-radius': '10px',
+                opacity: .5,
+                color: '#fff'}
+        });
+
+        $form.append(
+                $('<input>').attr('type','hidden').attr('name','ajax').val(true)
+        );
+
+        $.ajax({
+            type : 'POST',
+            url : $form.attr('action'),
+            data : $form.serialize(),
+            dataType : 'html',
+            success : function(data) {
+                var json = JSON.parse(data);
+                $('#errMess').remove();
+                if(json.success) {
+                    $form.fadeOut(function(){
+                        $form.parent().append(json.content);
+                        $form.find('.panel').hide().fadeIn();
+                        window.setTimeout(function() {
+                            location.href = 'http://2cto.local';
+                        }, 2000);
+                    });
+                } else {
+                    $form.before(
+                            $('<blockquote id="errMess">').append(
+                                    $('<p>').html(json.content)
+                            ).fadeIn()
+                    );
+                }
+                $.unblockUI();
+            }
+        });
+
+        return false;
+    }
+});
+

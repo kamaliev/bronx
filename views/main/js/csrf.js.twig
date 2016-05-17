@@ -1,0 +1,18 @@
+/**
+ * Created by runie on 17.12.15.
+ */
+// возвращает cookie с именем name, если есть, если нет, то undefined
+function getCookie(name) {
+    var matches = document.cookie.match(new RegExp(
+        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+    ));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+for (i=0;i<document.forms.length;i++)
+{
+    var newTextField = document.createElement('input');
+    newTextField.setAttribute('type','hidden');
+    newTextField.setAttribute('name','token');
+    newTextField.value='{{ csrf_token }}';
+    document.forms[i].appendChild(newTextField);
+}
